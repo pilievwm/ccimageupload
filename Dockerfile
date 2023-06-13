@@ -9,18 +9,18 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # Install dependencies
-COPY requirements.txt /app/
+COPY requirements.txt ./
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# Copy the current directory contents into the container at /app
-COPY . /app/
+# Copy the .env file into the container
+COPY .env ./
 
 # Make port 5051 available to the world outside this container
 EXPOSE 5051
 
 # Define environment variable
-ENV FLASK_APP=app
+ENV FLASK_APP=app.py
 
 # Run the command to start the Flask application
 #CMD ["flask", "run", "--host=0.0.0.0"]

@@ -3,7 +3,6 @@ services:
   asics:
     build: .
     restart: always
-    command: flask run --host=0.0.0.0 --port=5051
     ports:
       - "5051:5051"
     environment:
