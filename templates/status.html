@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <title>Status</title>
+    <script>
+        window.onload = function() {
+            var status = "{{status}}";
+            if(status != 'The process has been completed!') {
+                setTimeout(function(){
+                   location.reload();
+                }, 1000);
+            }
+        };
+    </script>
+    <style>
+        .status-completed {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="status" class="{{ 'status-completed' if status == 'The process has been completed!' else '' }}">{{ status }}</h1>
+    {% if status == 'The process has been completed!' %}
+    <a href="/">Go Back</a>
+    {% endif %}
+</body>
+</html>
