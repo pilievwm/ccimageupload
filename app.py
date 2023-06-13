@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 import csv
 import requests
 import json
+import socket
 from dotenv import load_dotenv
 
 # Load .env file
@@ -167,6 +168,16 @@ def processing_status():
         status = "The process has been completed!"
     return render_template('status.html', status=status)
 
+def get_ip_address():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    # Use the DNS address from the environment variables
+    s.connect((os.environ['DNS_ADDRESS'], int(os.environ['DNS_PORT'])))
+    ip_address = s.getsockname()[0]
+    s.close()
+    return ip_address
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5051))
+    data_dir=os.environ['CERT_DIR']
+    host = get_ip_address()
+    app.run(debug=True, host=host, port=port, ssl_context=(os.path.join(data_dir, os.environ['FULLCHAIN_FILE']), os.path.join(data_dir, os.environ['PRIVKEY_FILE'])))
