@@ -1,7 +1,7 @@
 import os
 import threading
 from collections import defaultdict
-from flask import Flask, session, request, redirect, url_for, flash, render_template
+from flask import Flask, request, redirect, url_for, render_template
 from werkzeug.utils import secure_filename
 import csv
 import requests
