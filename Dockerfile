@@ -19,6 +19,9 @@ COPY . /app/
 # Make port 5051 available to the world outside this container
 EXPOSE 5051
 
-# Run the application when the container launches
-CMD ["flask", "run", "--host=0.0.0.0", "--port=5051"]
+# Define environment variable
+ENV FLASK_APP=app.py
 
+# Run the command to start the Flask application
+#CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["python", "app.py"]
