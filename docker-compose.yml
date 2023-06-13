@@ -12,4 +12,4 @@ services:
     volumes:
       - .:/app
       - ./uploads:/app/uploads
-      - ./etc/letsencrypt/live/chat.cloudcart.com:/app/cert
+      - ./cert:/app/cert
